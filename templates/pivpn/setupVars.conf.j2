@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+INSTALL_USER={{ pivpn_user }}
+UNATTUPG={{ pivpn_unattended_upgrades_package }}
+pivpnInterface={{ pivpn_network_interface }}
+IPv4dns={{ pivpn_ipv4_dns }}
+IPv4addr={{ pivpn_ipv4_address }}
+IPv4gw={{ pivpn_ipv4_gateway }}
+pivpnProto={{ pivpn_protocol }}
+PORT={{ pivpn_port }}
+ENCRYPT={{ pivpn_encryption_key_size }}
+APPLY_TWO_POINT_FOUR={{ pivpn_enable_openvpn24 }}
+DOWNLOAD_DH_PARAM={{ pivpn_download_dh_param }}
+PUBLICDNS={{ pivpn_public_server_name }}
+OVPNDNS1={{ pivpn_dns_server1 }}
+OVPNDNS2={{ pivpn_dns_server2 }}
+SERVER_NAME={{ pivpn_server_name }}

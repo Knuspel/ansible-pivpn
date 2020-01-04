@@ -1,0 +1,65 @@
+---
+# tasks file for pivpn
+- name: Create PiVPN profile user
+  user:
+    name: "{{ pivpn_user }}"
+    password: "{{ pivpn_user_password|password_hash('sha512') }}"
+    update_password: always
+    state: present
+  when: system_ssh_user_password is defined
+  tags: pivpn
+
+- name: Install PiVPN required packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  tags: pivpn
+
+- name: Check PiVPN installation status
+  stat: path=/usr/local/bin/pivpn
+  register: pivpn
+  tags: pivpn
+
+- name: Clone PiVPN repository
+  git:
+    # Forked to address https://github.com/pivpn/pivpn/issues/902
+    # Temporary until current test branch moves to master.
+    # repo: "https://github.com/pivpn/pivpn.git"
+    repo: https://github.com/rmpratt1/pivpn.git
+    dest: "/tmp/pivpn"
+    update: yes
+    force: yes
+  when:
+    - not pivpn.stat.exists
+  tags: pivpn
+
+- name: Create PiVPN directory
+  file:
+    path: "/etc/pivpn/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  tags: pivpn
+
+- name: Create PiVPN unattended install setup file
+  template:
+    src: "pivpn/setupVars.conf.j2"
+    dest: "/etc/pivpn/setupVars.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  when:
+    - not pivpn.stat.exists
+  tags: pivpn
+
+- name: Install PiVPN
+  shell:
+    chdir: "/tmp/pivpn/auto_install/"
+    cmd: "bash install.sh --unattended"
+  become: yes
+  when:
+    - not pivpn.stat.exists
+  tags: pivpn

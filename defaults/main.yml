@@ -1,0 +1,18 @@
+---
+# defaults file for pivpn
+pivpn_user: "pivpn"
+pivpn_user_password: "pivpn"
+pivpn_unattended_upgrades_package: "unattended-upgrades"
+pivpn_network_interface: "eth0"
+pivpn_ipv4_dns: ""
+pivpn_ipv4_address: "{{ ansible_default_ipv4.address if ansible_default_ipv4.address is defined else '' }}"
+pivpn_ipv4_gateway: "{{ ansible_default_ipv4.gateway if ansible_default_ipv4.gateway is defined else '' }}"
+pivpn_protocol: "udp"
+pivpn_port: "1194"
+pivpn_encryption_key_size: "256"
+pivpn_enable_openvpn24: "true"
+pivpn_download_dh_param: "false"
+pivpn_public_server_name: ""
+pivpn_dns_server1: "{{ ansible_dns.nameservers[0] if ansible_dns.nameservers|length>=1 else '' }}"
+pivpn_dns_server2: "{{ ansible_dns.nameservers[1] if ansible_dns.nameservers|length>=2 else '' }}"
+pivpn_server_name: "{{ inventory_hostname }}"

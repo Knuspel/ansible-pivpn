@@ -1,0 +1,17 @@
+---
+# vars file for pivpn
+packages:
+  - git
+  - ufw
+  - openvpn
+  - easy-rsa
+  - tar
+  - wget
+  - grep
+  - iptables-persistent
+  - dnsutils
+  - expect
+  - whiptail
+  - net-tools
+  - grepcidr
+  - jq
