@@ -38,20 +38,21 @@ None
 Example Playbook
 ----------------
 
-Minimal Vars
+### Minimal Vars
 
-- hosts: piholes
+```- hosts: piholes
   roles:
-    - role: rmpratt1.ansible
+    - role: rmpratt1.ansible-pivpn
       become: yes
   vars:
     - pivpn_public_server_name:: "vpn.example.com"
+```
 
-All Vars Example
+### All Vars Example
 
-- hosts: piholes
+```- hosts: piholes
   roles:
-    - role: rmpratt1.ansible
+    - role: rmpratt1.ansible-pivpn
       become: yes
   vars:
     - pivpn_user: "pivpn"
@@ -70,6 +71,7 @@ All Vars Example
     - pivpn_dns_server1: "1.1.1.1"
     - pivpn_dns_server2: "1.0.0.1"
     - pivpn_server_name: "pivpn"
+```
 
 License
 -------
