@@ -24,8 +24,8 @@
   git:
     # Forked to address https://github.com/pivpn/pivpn/issues/902
     # Temporary until current test branch moves to master.
-    # repo: "https://github.com/pivpn/pivpn.git"
-    repo: https://github.com/rmpratt1/pivpn.git
+    repo: "https://github.com/pivpn/pivpn.git"
+    #repo: https://github.com/rmpratt1/pivpn.git
     dest: "/tmp/pivpn"
     update: yes
     force: yes
