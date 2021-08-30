@@ -58,7 +58,7 @@
 - name: Install PiVPN
   shell:
     chdir: "/tmp/pivpn/auto_install/"
-    cmd: "bash install.sh --unattended"
+    cmd: "bash install.sh --unattended /etc/pivpn/setupVars.conf"
   become: yes
   when:
     - not pivpn.stat.exists
